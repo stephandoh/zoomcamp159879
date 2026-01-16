@@ -1,0 +1,8 @@
+[
+  { "name": "ride_id", "type": "STRING", "mode": "REQUIRED" },
+  { "name": "pickup_datetime", "type": "TIMESTAMP" },
+  { "name": "dropoff_datetime", "type": "TIMESTAMP" },
+  { "name": "pickup_zone", "type": "STRING" },
+  { "name": "dropoff_zone", "type": "STRING" },
+  { "name": "total_amount", "type": "FLOAT" }
+]

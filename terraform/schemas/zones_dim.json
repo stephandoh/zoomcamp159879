@@ -1,0 +1,5 @@
+[
+  { "name": "zone_id", "type": "INTEGER", "mode": "REQUIRED" },
+  { "name": "zone_name", "type": "STRING" },
+  { "name": "borough", "type": "STRING" }
+]

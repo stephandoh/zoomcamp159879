@@ -1,0 +1,12 @@
+# Keys
+solar-router-483810-s0-ed83e3d054aa.json
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.crash.log
+.terraform.lock.hcl
+
+#notes
+notes.txt

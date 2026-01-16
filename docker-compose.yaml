@@ -1,0 +1,33 @@
+services:
+  db:
+    container_name: taxi_ingestion_db
+    image: postgres:15
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: taxi_db
+    volumes:
+      - taxi_ingestion_volume:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
+    networks:
+      - taxi_ingestion
+
+  pgadmin:
+    container_name: taxi_ingestion_admin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@taxi.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    volumes:
+      - taxi_ingestion_admin_data:/var/lib/pgadmin
+    ports:
+      - "8086:80"
+    networks:
+      - taxi_ingestion
+
+volumes:
+  taxi_ingestion_volume:
+  taxi_ingestion_admin_data:
+networks:
+  taxi_ingestion:
