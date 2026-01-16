@@ -57,7 +57,7 @@ Download the NYC taxi zones dataset:
 wget https://github.com/DataTalksClub/nyc-tlc-data/releases/download/misc/taxi_zone_lookup.csv
 
 #### My Data Architecture
-<img width="1386" height="762" alt="image" src="https://github.com/user-attachments/assets/3204a144-5feb-4938-9b7c-ef34a5632ee2" />
+![Uploading image.png…]()
 
 #### Steps
 ```
