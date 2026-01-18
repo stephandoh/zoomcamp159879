@@ -96,7 +96,7 @@ write queries and answer questions 3 to 6
 ```
 SELECT 
     COUNT(*) AS Trips_less_1mile
-FROM green_taxi_trips
+FROM green_taxi_table
 WHERE lpep_pickup_datetime >= '2025-11-01' 
   AND lpep_pickup_datetime < '2025-12-01'
   AND trip_distance <= 1;
@@ -111,7 +111,7 @@ FROM
     (SELECT
          DATE(lpep_pickup_datetime) AS pickup_date,
          SUM(trip_distance) AS TotalDist
-     FROM green_taxi_trips
+     FROM green_taxi_table
      WHERE trip_distance < 100
      GROUP BY DATE(lpep_pickup_datetime)
      ORDER BY SUM(trip_distance) DESC) AS T
@@ -124,7 +124,7 @@ LIMIT 1;
 SELECT 
     Z."Zone",
     SUM(G.total_amount) AS SumofMoneyPaid
-FROM green_taxi_trips AS G
+FROM green_taxi_table AS G
 JOIN zones Z ON G."PULocationID" = Z."LocationID"
 WHERE DATE(lpep_pickup_datetime) = '2025-11-18'
 GROUP BY Z."Zone"
@@ -135,19 +135,19 @@ ORDER BY SumofMoneyPaid DESC;
 ### Question 6: Largest tip
 ```
 SELECT 
-    Z2."Zone" AS pickup_zone,
     Z1."Zone" AS dropoff_zone,
-    SUM(G.tip_amount) AS Tips
-FROM green_taxi_trips AS G
+    G.tip_amount
+FROM green_taxi_table AS G
 JOIN zones Z1 ON G."DOLocationID" = Z1."LocationID"
 JOIN zones Z2 ON G."PULocationID" = Z2."LocationID"
-WHERE (G.lpep_pickup_datetime >= '2025-11-01' AND G.lpep_pickup_datetime < '2025-12-01') 
-  AND Z2."Zone" = 'East Harlem North'
-GROUP BY Z2."Zone", Z1."Zone"
-ORDER BY Tips DESC
+WHERE 
+    Z2."Zone" = 'East Harlem North'
+    AND G.lpep_pickup_datetime >= '2025-11-01'
+    AND G.lpep_pickup_datetime < '2025-12-01'
+ORDER BY G.tip_amount DESC  -- This finds the single highest value
 LIMIT 1;
 ```
-### Answer: Upper East Side North
+### Answer: Yorkville West
 ---
 ```
 docker compose down
